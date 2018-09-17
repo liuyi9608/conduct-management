@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liuym.student.repository.mapper.base.BusinessMigrateRecordMapper">
+  <resultMap id="BaseResultMap" type="com.liuym.student.repository.model.entity.BusinessMigrateRecord">
+    <id column="f_id" jdbcType="BIGINT" property="id"/>
+    <result column="f_business_id" jdbcType="BIGINT" property="businessId"/>
+    <result column="f_corp_id" jdbcType="INTEGER" property="corpId"/>
+    <result column="f_corp_name" jdbcType="VARCHAR" property="corpName"/>
+    <result column="f_type" jdbcType="INTEGER" property="type"/>
+    <result column="f_time" jdbcType="TIMESTAMP" property="time"/>
+    <result column="f_from_type" jdbcType="INTEGER" property="fromType"/>
+    <result column="f_from_id" jdbcType="INTEGER" property="fromId"/>
+    <result column="f_to_type" jdbcType="INTEGER" property="toType"/>
+    <result column="f_to_id" jdbcType="INTEGER" property="toId"/>
+    <result column="f_message" jdbcType="VARCHAR" property="message"/>
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    f_id, f_business_id, f_corp_id, f_corp_name, f_type, f_time, f_from_type, f_from_id, 
+    f_to_type, f_to_id, f_message
+  </sql>
+
+  <!-- 获取商机的最后一条信息 -->
+  <select id="getLastInfo" resultMap="BaseResultMap">
+     select
+     <include refid="Base_Column_List"></include>
+    from `d_ec_business`.`t_business_migrate_record`
+    where f_business_id = #{businessId} order by f_id desc
+  </select>
+
+  <!-- 批量插入 -->
+  <insert id="batchInsertRecord">
+    insert into `d_ec_business`.`t_business_migrate_record`
+    ( f_business_id, f_corp_id, f_corp_name, f_type, f_time, f_from_type, f_from_id,
+    f_to_type, f_to_id, f_message)
+    values
+    <foreach collection="list" item="migrateRecord" separator=",">
+      (#{migrateRecord.businessId},#{migrateRecord.corpId},#{migrateRecord.corpName},#{migrateRecord.type},
+      #{migrateRecord.time},#{migrateRecord.fromType},#{migrateRecord.fromId},#{migrateRecord.toType}
+      ,#{migrateRecord.toId} ,#{migrateRecord.message})
+    </foreach>
+  </insert>
+
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+
+    from `d_ec_business`..`t_business_migrate_record`
+    where f_id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from `d_ec_business`..`t_business_migrate_record`
+    where f_id = #{id,jdbcType=BIGINT}
+  </delete>
+
+
+  <insert id="insert" parameterType="com.liuym.student.repository.model.entity.BusinessMigrateRecord">
+    insert into `d_ec_business`..`t_business_migrate_record` (f_id, f_business_id, f_corp_id, 
+      f_corp_name, f_type, f_time, 
+      f_from_type, f_from_id, f_to_type, 
+      f_to_id, f_message)
+    values (#{id,jdbcType=BIGINT}, #{businessId,jdbcType=BIGINT}, #{corpId,jdbcType=INTEGER}, 
+      #{corpName,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}, 
+      #{fromType,jdbcType=INTEGER}, #{fromId,jdbcType=INTEGER}, #{toType,jdbcType=INTEGER}, 
+      #{toId,jdbcType=INTEGER}, #{message,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.liuym.student.repository.model.entity.BusinessMigrateRecord">
+    insert into `d_ec_business`..`t_business_migrate_record`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        f_id,
+      </if>
+      <if test="businessId != null">
+        f_business_id,
+      </if>
+      <if test="corpId != null">
+        f_corp_id,
+      </if>
+      <if test="corpName != null">
+        f_corp_name,
+      </if>
+      <if test="type != null">
+        f_type,
+      </if>
+      <if test="time != null">
+        f_time,
+      </if>
+      <if test="fromType != null">
+        f_from_type,
+      </if>
+      <if test="fromId != null">
+        f_from_id,
+      </if>
+      <if test="toType != null">
+        f_to_type,
+      </if>
+      <if test="toId != null">
+        f_to_id,
+      </if>
+      <if test="message != null">
+        f_message,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="businessId != null">
+        #{businessId,jdbcType=BIGINT},
+      </if>
+      <if test="corpId != null">
+        #{corpId,jdbcType=INTEGER},
+      </if>
+      <if test="corpName != null">
+        #{corpName,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fromType != null">
+        #{fromType,jdbcType=INTEGER},
+      </if>
+      <if test="fromId != null">
+        #{fromId,jdbcType=INTEGER},
+      </if>
+      <if test="toType != null">
+        #{toType,jdbcType=INTEGER},
+      </if>
+      <if test="toId != null">
+        #{toId,jdbcType=INTEGER},
+      </if>
+      <if test="message != null">
+        #{message,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liuym.student.repository.model.entity.BusinessMigrateRecord">
+    update `d_ec_business`..`t_business_migrate_record`
+    <set>
+      <if test="businessId != null">
+        f_business_id = #{businessId,jdbcType=BIGINT},
+      </if>
+      <if test="corpId != null">
+        f_corp_id = #{corpId,jdbcType=INTEGER},
+      </if>
+      <if test="corpName != null">
+        f_corp_name = #{corpName,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        f_type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="time != null">
+        f_time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fromType != null">
+        f_from_type = #{fromType,jdbcType=INTEGER},
+      </if>
+      <if test="fromId != null">
+        f_from_id = #{fromId,jdbcType=INTEGER},
+      </if>
+      <if test="toType != null">
+        f_to_type = #{toType,jdbcType=INTEGER},
+      </if>
+      <if test="toId != null">
+        f_to_id = #{toId,jdbcType=INTEGER},
+      </if>
+      <if test="message != null">
+        f_message = #{message,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where f_id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liuym.student.repository.model.entity.BusinessMigrateRecord">
+    update `d_ec_business`..`t_business_migrate_record`
+    set f_business_id = #{businessId,jdbcType=BIGINT},
+      f_corp_id = #{corpId,jdbcType=INTEGER},
+      f_corp_name = #{corpName,jdbcType=VARCHAR},
+      f_type = #{type,jdbcType=INTEGER},
+      f_time = #{time,jdbcType=TIMESTAMP},
+      f_from_type = #{fromType,jdbcType=INTEGER},
+      f_from_id = #{fromId,jdbcType=INTEGER},
+      f_to_type = #{toType,jdbcType=INTEGER},
+      f_to_id = #{toId,jdbcType=INTEGER},
+      f_message = #{message,jdbcType=VARCHAR}
+    where f_id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

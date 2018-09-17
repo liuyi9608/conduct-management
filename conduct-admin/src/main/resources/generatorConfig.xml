@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+  <!--导入属性配置-->
+  <properties resource="mybatisGeneratorDatasource.properties"></properties>
+
+  <!--指定特定数据库的jdbc驱动jar包的位置-->
+  <classPathEntry location="${db.driverLocation}"/>
+
+  <context id="MysqlContext" targetRuntime="MyBatis3" defaultModelType="flat">
+    <property name="beginningDelimiter" value="`"/>
+    <property name="endingDelimiter" value="`"/>
+    <property name="ignoreQualifiersAtRuntime" value="false"/>
+
+    <!-- optional，旨在创建class时，对注释进行控制 -->
+    <commentGenerator>
+      <property name="suppressDate" value="true"/>
+      <property name="suppressAllComments" value="true"/>
+    </commentGenerator>
+
+    <!--jdbc的数据库连接 -->
+    <jdbcConnection
+      driverClass="${db.driverClassName}"
+      connectionURL="${db.url}"
+      userId="${db.username}"
+      password="${db.password}">
+    </jdbcConnection>
+
+    <!--Model模型生成器-->
+    <javaModelGenerator targetPackage="com.ec.corpprotect.repository.model.entity" targetProject="./src/main/java">
+      <!-- 是否对类CHAR类型的列的数据进行trim操作 -->
+      <property name="trimStrings" value="true" />
+    </javaModelGenerator>
+
+    <!--mapper映射文件生成所在的目录 为每一个数据库的表生成对应的SqlMap文件 -->
+    <sqlMapGenerator targetPackage="mybatis"  targetProject="./src/main/resources"/>
+
+    <!-- targetPackage：mapper接口dao生成的位置 -->
+    <javaClientGenerator type="XMLMAPPER" targetPackage="com.ec.corpprotect.repository.mapper.base"  targetProject="./src/main/java"/>
+
+    <!--为了方便使用，统一将cid uid f_id统一为Long类型-->
+    <!--mybatis-generator只是作为初始化，后续的字段变更不再使用自动生成-->
+
+    <!--<table schema="d_ec_wallet" catalog="d_ec_wallet" tableName="t_corp_wallet" domainObjectName="CorpWallet" delimitIdentifiers="true"  >
+        <columnRenamingRule searchString="^f_" replaceString="" />
+        <columnOverride column="f_corp_id" property="corpId" javaType="Long"/>
+    </table>
+
+    <table schema="d_ec_wallet" catalog="d_ec_wallet" tableName="t_corp_wallet_log" domainObjectName="CorpWalletLog" delimitIdentifiers="true"  >
+       <columnRenamingRule searchString="^f_" replaceString="" />
+       <columnOverride column="f_id" property="id" javaType="Long"/>
+       <columnOverride column="f_user_id" property="userId" javaType="Long"/>
+       <columnOverride column="f_corp_id" property="corpId" javaType="Long"/>
+       <columnOverride column="f_type" property="type" javaType="Integer"/>
+    </table>-->
+
+   <!-- <table catalog="d_ec_corp" tableName="t_corp_info" delimitIdentifiers="true" domainObjectName="CorpInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+      <columnRenamingRule searchString="^f_" replaceString="" />
+      <columnOverride column="f_corp_id" property="corpId" javaType="Long"/>
+      <columnOverride column="f_agent_id" property="agentId" javaType="Long"/>
+      <columnOverride column="f_agent_csid" property="agentCsid" javaType="Long" />
+      <columnOverride column="f_agent_gjid" property="agentGjid" javaType="Long"/>
+      <columnOverride column="f_contact_id" property="contactId" javaType="Long" />
+    </table>
+
+    <table catalog="d_ec_business" tableName="t_business_library" delimitIdentifiers="true" domainObjectName="BusinessLibrary" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+      <columnRenamingRule searchString="^f_" replaceString="" />
+      <columnOverride column="f_corp_id" property="corpId" javaType="Long"/>
+      <columnOverride column="f_agent_id" property="agentId" javaType="Long"/>
+      <columnOverride column="f_created_by" property="createdBy" javaType="Long" />
+      <columnOverride column="f_updated_by" property="updatedBy" javaType="Long"/>
+    </table>-->
+
+      <!--<table catalog="d_ec_agent" tableName="t_agent_protect" delimitIdentifiers="true" domainObjectName="AgentProtect" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+          <columnRenamingRule searchString="^f_" replaceString="" />
+          <columnOverride column="f_agent_corp_id" property="agentCorpId" javaType="Long"/>
+          <columnOverride column="f_agent_user_id" property="agentUserId" javaType="Long"/>
+          <columnOverride column="f_sales_id" property="salesId" javaType="Long"/>
+          <columnOverride column="f_status" property="status" javaType="Integer" />
+          <columnOverride column="f_is_renew" property="isRenew" javaType="Integer" />
+      </table>-->
+
+      <!--<table catalog="d_ec_agent" tableName="t_agent_protect_conflict" delimitIdentifiers="true" domainObjectName="AgentProtectConflict" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+          <columnRenamingRule searchString="^f_" replaceString="" />
+          <columnOverride column="f_agent_corp_id" property="agentCorpId" javaType="Long"/>
+          <columnOverride column="f_agent_user_id" property="agentUserId" javaType="Long"/>
+          <columnOverride column="f_oper_id" property="operId" javaType="Long"/>
+          <columnOverride column="f_oper_is_admin" property="operIsAdmin" javaType="Integer"/>
+          <columnOverride column="f_status" property="status" javaType="Integer" />
+          <columnOverride column="f_is_renew" property="isRenew" javaType="Integer" />
+      </table>-->
+
+    <!--<table catalog="d_ec_agent" tableName="t_agent_protect_config" delimitIdentifiers="true" domainObjectName="AgentProtectConfig" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+          <columnRenamingRule searchString="^f_" replaceString="" />
+          <columnOverride column="f_protect_limit" property="protectLimit" javaType="Integer"/>
+          <columnOverride column="f_renew_limit" property="renewLimit" javaType="Integer" />
+          <columnOverride column="f_blank_limit" property="blankLimit" javaType="Integer" />
+      </table>-->
+
+  </context>
+</generatorConfiguration>

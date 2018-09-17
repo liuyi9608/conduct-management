@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liuym.admin.repository.mapper.base.AgentProtectMapper">
+    <resultMap id="BaseResultMap" type="com.liuym.admin.repository.model.entity.AgentProtect">
+        <id column="f_protect_id" jdbcType="INTEGER" property="protectId"/>
+        <result column="f_agent_corp_id" jdbcType="INTEGER" property="agentCorpId"/>
+        <result column="f_agent_user_id" jdbcType="INTEGER" property="agentUserId"/>
+        <result column="f_status" jdbcType="TINYINT" property="status"/>
+        <result column="f_start_time" jdbcType="TIMESTAMP" property="startTime"/>
+        <result column="f_end_time" jdbcType="TIMESTAMP" property="endTime"/>
+        <result column="f_province" jdbcType="INTEGER" property="province"/>
+        <result column="f_city" jdbcType="INTEGER" property="city"/>
+        <result column="f_sales_id" jdbcType="INTEGER" property="salesId"/>
+        <result column="f_company_name" jdbcType="VARCHAR" property="companyName"/>
+        <result column="f_company_alias" jdbcType="VARCHAR" property="companyAlias"/>
+        <result column="f_website" jdbcType="VARCHAR" property="website"/>
+        <result column="f_industry" jdbcType="INTEGER" property="industry"/>
+        <result column="f_intent" jdbcType="VARCHAR" property="intent"/>
+        <result column="f_contact_name" jdbcType="VARCHAR" property="contactName"/>
+        <result column="f_contact_phone" jdbcType="VARCHAR" property="contactPhone"/>
+        <result column="f_contact_more" jdbcType="VARCHAR" property="contactMore"/>
+        <result column="f_title" jdbcType="VARCHAR" property="title"/>
+        <result column="f_create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="f_is_renew" jdbcType="TINYINT" property="isRenew"/>
+        <result column="f_cancel_time" jdbcType="TIMESTAMP" property="cancelTime"/>
+        <result column="f_cancel_user_id" jdbcType="INTEGER" property="cancelUserId"/>
+        <result column="f_cancel_corp_id" jdbcType="INTEGER" property="cancelCorpId"/>
+        <result column="f_mark_animus" jdbcType="TINYINT" property="markAnimus"/>
+    </resultMap>
+
+<!--封装保护区域的map-->
+    <resultMap id="protectAreaMap"  type="HashMap">
+        <result property="f_city" column="f_city" javaType="INTEGER"/>
+        <result property="f_province" column="f_province" javaType="INTEGER" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    f_protect_id, f_agent_corp_id, f_agent_user_id, f_status, f_start_time, f_end_time, 
+    f_province, f_city, f_sales_id, f_company_name, f_company_alias, f_website, f_industry, 
+    f_intent, f_contact_name, f_contact_phone, f_contact_more, f_title, f_create_time, 
+    f_is_renew, f_cancel_time, f_cancel_user_id, f_cancel_corp_id, f_mark_animus
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from `d_ec_agent`.`t_agent_protect`
+        where f_protect_id = #{protectId,jdbcType=INTEGER}
+    </select>
+    <select id="getCorpProtectInfoByCName" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from `d_ec_agent`.`t_agent_protect`
+        where f_company_name = #{corpName,jdbcType=VARCHAR} order by f_protect_id desc LIMIT 1
+    </select>
+    <select id="getProtectNum" resultType="java.lang.Integer">
+    select count(*)
+    from `d_ec_agent`.`t_agent_protect`
+    where f_agent_corp_id =#{corpId,jdbcType=INTEGER} AND f_status = 1 AND f_end_time >= now()
+  </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from `d_ec_agent`.`t_agent_protect`
+    where f_protect_id = #{protectId,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.liuym.admin.repository.model.entity.AgentProtect">
+    insert into `d_ec_agent`.`t_agent_protect` (f_protect_id, f_agent_corp_id, f_agent_user_id, 
+      f_status, f_start_time, f_end_time, 
+      f_province, f_city, f_sales_id, 
+      f_company_name, f_company_alias, f_website, 
+      f_industry, f_intent, f_contact_name, 
+      f_contact_phone, f_contact_more, f_title, 
+      f_create_time, f_is_renew, f_cancel_time, 
+      f_cancel_user_id, f_cancel_corp_id, f_mark_animus
+      )
+    values (#{protectId,jdbcType=INTEGER}, #{agentCorpId,jdbcType=INTEGER}, #{agentUserId,jdbcType=INTEGER}, 
+      #{status,jdbcType=TINYINT}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{province,jdbcType=INTEGER}, #{city,jdbcType=INTEGER}, #{salesId,jdbcType=INTEGER}, 
+      #{companyName,jdbcType=VARCHAR}, #{companyAlias,jdbcType=VARCHAR}, #{website,jdbcType=VARCHAR}, 
+      #{industry,jdbcType=INTEGER}, #{intent,jdbcType=VARCHAR}, #{contactName,jdbcType=VARCHAR}, 
+      #{contactPhone,jdbcType=VARCHAR}, #{contactMore,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{isRenew,jdbcType=TINYINT}, #{cancelTime,jdbcType=TIMESTAMP}, 
+      #{cancelUserId,jdbcType=INTEGER}, #{cancelCorpId,jdbcType=INTEGER}, #{markAnimus,jdbcType=TINYINT}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.liuym.admin.repository.model.entity.AgentProtect">
+        insert into `d_ec_agent`.`t_agent_protect`
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="protectId != null">
+                f_protect_id,
+            </if>
+            <if test="agentCorpId != null">
+                f_agent_corp_id,
+            </if>
+            <if test="agentUserId != null">
+                f_agent_user_id,
+            </if>
+            <if test="status != null">
+                f_status,
+            </if>
+            <if test="startTime != null">
+                f_start_time,
+            </if>
+            <if test="endTime != null">
+                f_end_time,
+            </if>
+            <if test="province != null">
+                f_province,
+            </if>
+            <if test="city != null">
+                f_city,
+            </if>
+            <if test="salesId != null">
+                f_sales_id,
+            </if>
+            <if test="companyName != null">
+                f_company_name,
+            </if>
+            <if test="companyAlias != null">
+                f_company_alias,
+            </if>
+            <if test="website != null">
+                f_website,
+            </if>
+            <if test="industry != null">
+                f_industry,
+            </if>
+            <if test="intent != null">
+                f_intent,
+            </if>
+            <if test="contactName != null">
+                f_contact_name,
+            </if>
+            <if test="contactPhone != null">
+                f_contact_phone,
+            </if>
+            <if test="contactMore != null">
+                f_contact_more,
+            </if>
+            <if test="title != null">
+                f_title,
+            </if>
+            <if test="createTime != null">
+                f_create_time,
+            </if>
+            <if test="isRenew != null">
+                f_is_renew,
+            </if>
+            <if test="cancelTime != null">
+                f_cancel_time,
+            </if>
+            <if test="cancelUserId != null">
+                f_cancel_user_id,
+            </if>
+            <if test="cancelCorpId != null">
+                f_cancel_corp_id,
+            </if>
+            <if test="markAnimus != null">
+                f_mark_animus,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="protectId != null">
+                #{protectId,jdbcType=INTEGER},
+            </if>
+            <if test="agentCorpId != null">
+                #{agentCorpId,jdbcType=INTEGER},
+            </if>
+            <if test="agentUserId != null">
+                #{agentUserId,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="startTime != null">
+                #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endTime != null">
+                #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="province != null">
+                #{province,jdbcType=INTEGER},
+            </if>
+            <if test="city != null">
+                #{city,jdbcType=INTEGER},
+            </if>
+            <if test="salesId != null">
+                #{salesId,jdbcType=INTEGER},
+            </if>
+            <if test="companyName != null">
+                #{companyName,jdbcType=VARCHAR},
+            </if>
+            <if test="companyAlias != null">
+                #{companyAlias,jdbcType=VARCHAR},
+            </if>
+            <if test="website != null">
+                #{website,jdbcType=VARCHAR},
+            </if>
+            <if test="industry != null">
+                #{industry,jdbcType=INTEGER},
+            </if>
+            <if test="intent != null">
+                #{intent,jdbcType=VARCHAR},
+            </if>
+            <if test="contactName != null">
+                #{contactName,jdbcType=VARCHAR},
+            </if>
+            <if test="contactPhone != null">
+                #{contactPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="contactMore != null">
+                #{contactMore,jdbcType=VARCHAR},
+            </if>
+            <if test="title != null">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isRenew != null">
+                #{isRenew,jdbcType=TINYINT},
+            </if>
+            <if test="cancelTime != null">
+                #{cancelTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="cancelUserId != null">
+                #{cancelUserId,jdbcType=INTEGER},
+            </if>
+            <if test="cancelCorpId != null">
+                #{cancelCorpId,jdbcType=INTEGER},
+            </if>
+            <if test="markAnimus != null">
+                #{markAnimus,jdbcType=TINYINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.liuym.admin.repository.model.entity.AgentProtect">
+        update `d_ec_agent`.`t_agent_protect`
+        <set>
+            <if test="agentCorpId != null">
+                f_agent_corp_id = #{agentCorpId,jdbcType=INTEGER},
+            </if>
+            <if test="agentUserId != null">
+                f_agent_user_id = #{agentUserId,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                f_status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="startTime != null">
+                f_start_time = #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endTime != null">
+                f_end_time = #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="province != null">
+                f_province = #{province,jdbcType=INTEGER},
+            </if>
+            <if test="city != null">
+                f_city = #{city,jdbcType=INTEGER},
+            </if>
+            <if test="salesId != null">
+                f_sales_id = #{salesId,jdbcType=INTEGER},
+            </if>
+            <if test="companyName != null">
+                f_company_name = #{companyName,jdbcType=VARCHAR},
+            </if>
+            <if test="companyAlias != null">
+                f_company_alias = #{companyAlias,jdbcType=VARCHAR},
+            </if>
+            <if test="website != null">
+                f_website = #{website,jdbcType=VARCHAR},
+            </if>
+            <if test="industry != null">
+                f_industry = #{industry,jdbcType=INTEGER},
+            </if>
+            <if test="intent != null">
+                f_intent = #{intent,jdbcType=VARCHAR},
+            </if>
+            <if test="contactName != null">
+                f_contact_name = #{contactName,jdbcType=VARCHAR},
+            </if>
+            <if test="contactPhone != null">
+                f_contact_phone = #{contactPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="contactMore != null">
+                f_contact_more = #{contactMore,jdbcType=VARCHAR},
+            </if>
+            <if test="title != null">
+                f_title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                f_create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isRenew != null">
+                f_is_renew = #{isRenew,jdbcType=TINYINT},
+            </if>
+            <if test="cancelTime != null">
+                f_cancel_time = #{cancelTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="cancelUserId != null">
+                f_cancel_user_id = #{cancelUserId,jdbcType=INTEGER},
+            </if>
+            <if test="cancelCorpId != null">
+                f_cancel_corp_id = #{cancelCorpId,jdbcType=INTEGER},
+            </if>
+            <if test="markAnimus != null">
+                f_mark_animus = #{markAnimus,jdbcType=TINYINT},
+            </if>
+        </set>
+        where f_protect_id = #{protectId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.liuym.admin.repository.model.entity.AgentProtect">
+    update `d_ec_agent`.`t_agent_protect`
+    set f_agent_corp_id = #{agentCorpId,jdbcType=INTEGER},
+      f_agent_user_id = #{agentUserId,jdbcType=INTEGER},
+      f_status = #{status,jdbcType=TINYINT},
+      f_start_time = #{startTime,jdbcType=TIMESTAMP},
+      f_end_time = #{endTime,jdbcType=TIMESTAMP},
+      f_province = #{province,jdbcType=INTEGER},
+      f_city = #{city,jdbcType=INTEGER},
+      f_sales_id = #{salesId,jdbcType=INTEGER},
+      f_company_name = #{companyName,jdbcType=VARCHAR},
+      f_company_alias = #{companyAlias,jdbcType=VARCHAR},
+      f_website = #{website,jdbcType=VARCHAR},
+      f_industry = #{industry,jdbcType=INTEGER},
+      f_intent = #{intent,jdbcType=VARCHAR},
+      f_contact_name = #{contactName,jdbcType=VARCHAR},
+      f_contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      f_contact_more = #{contactMore,jdbcType=VARCHAR},
+      f_title = #{title,jdbcType=VARCHAR},
+      f_create_time = #{createTime,jdbcType=TIMESTAMP},
+      f_is_renew = #{isRenew,jdbcType=TINYINT},
+      f_cancel_time = #{cancelTime,jdbcType=TIMESTAMP},
+      f_cancel_user_id = #{cancelUserId,jdbcType=INTEGER},
+      f_cancel_corp_id = #{cancelCorpId,jdbcType=INTEGER},
+      f_mark_animus = #{markAnimus,jdbcType=TINYINT}
+    where f_protect_id = #{protectId,jdbcType=INTEGER}
+  </update>
+
+
+    <select id="getProtectArea" resultMap="protectAreaMap" >
+
+      SELECT  a.f_province, a.f_city FROM  d_ec_agent.t_agent_area a JOIN d_ec_agent.t_agent_config c ON (a.f_id = c.f_agent_corp_id) WHERE a.f_province != 0 AND a.f_type=0 AND a.f_id=#{corpId}
+
+    </select>
+    <select id="getCorpProtectInfoByProtectId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from `d_ec_agent`.`t_agent_protect`
+        where f_protect_id = #{protectId,jdbcType=VARCHAR}
+    </select>
+    <select id="getProtectTotal" resultType="java.lang.Integer">
+         SELECT f_protect_num FROM  d_ec_agent.t_agent_config WHERE f_agent_corp_id=#{corpId};
+    </select>
+    <select id="getValidCorpProtectInfoByCName"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from `d_ec_agent`.`t_agent_protect`
+        where f_company_name =#{corpName}
+        and f_status = 1
+        and f_end_time >= now()
+
+    </select>
+</mapper>

@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+  <!--<classPathEntry location="E:\mavenrepo\mysql\mysql-connector-java\5.1.46\mysql-connector-java-5.1.46.jar"/>-->
+  <classPathEntry location="D:\mysql-connector-java-5.1.35.jar"/>
+  <context id="MysqlContext" targetRuntime="MyBatis3" defaultModelType="flat">
+    <property name="beginningDelimiter" value="`"/>
+    <property name="endingDelimiter" value="`"/>
+    <property name="ignoreQualifiersAtRuntime" value="false"/>
+
+    <commentGenerator>
+      <property name="suppressDate" value="true"/>
+    </commentGenerator>
+
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+      connectionURL="jdbc:mysql://192.168.1.150:3306/"
+      userId="java_admin"
+      password="ecjava">
+      <!--<property name="nullCatalogMeansCurrent" value="false"/>-->
+    </jdbcConnection>
+
+    <javaTypeResolver>
+      <property name="forceBigDecimals" value="true"/>
+    </javaTypeResolver>
+
+    <javaModelGenerator targetPackage="com.ec.corpinfo.repository.model.entity"
+      targetProject="./src/main/java">
+      <property name="trimStrings" value="true"/>
+    </javaModelGenerator>
+
+    <sqlMapGenerator targetPackage="mybatis" targetProject="./src/main/resources"/>
+
+    <javaClientGenerator type="XMLMAPPER" targetPackage="com.ec.corpinfo.repository.mapper.base"
+      targetProject="./src/main/java"/>
+
+    <!--<table tableName="t_agent" domainObjectName="Agent" enableCountByExample="false"-->
+    <!--enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+    <!--selectByExampleQueryId="false"-->
+    <!--catalog="d_ec_agent">-->
+    <!--<property name="ignoreQualifiersAtRuntime" value="true"/>-->
+    <!--<columnRenamingRule searchString="^f_" replaceString=""/>-->
+    <!--<ignoreColumn column="f_issec_agent" delimitedColumnName=""/>-->
+    <!--<columnOverride column="f_account_num" javaType="java.lang.Integer">-->
+    <!--</columnOverride>-->
+    <!--</table>-->
+    <!-- 操作日志-->
+    <!--<table catalog="d_ec_admin" schema="d_ec_admin" tableName="t_admin_log"
+      domainObjectName="AdminLog" enableCountByExample="false"
+      enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+      selectByExampleQueryId="false">
+      <property name="ignoreQualifiersAtRuntime" value="true"/>
+      <columnRenamingRule searchString="^f_" replaceString=""/>
+      <columnOverride column="f_log" property="logInfo" javaType="String"/>
+      <columnOverride column="f_user_id" property="userId" javaType="Long"/>
+      <columnOverride column="f_datetime" property="logTime" javaType="java.util.Date"/>
+      <columnOverride column="f_type" property="logType" javaType="Integer"/>
+      <columnOverride column="f_action" property="logAct" javaType="String"/>
+    </table>
+    <table catalog="d_ec_corp" schema="d_ec_corp" tableName="t_corp_from"
+      domainObjectName="CorpFrom" enableCountByExample="false"
+      enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+      selectByExampleQueryId="false">
+      <property name="ignoreQualifiersAtRuntime" value="true"/>
+      <columnRenamingRule searchString="^f_" replaceString=""/>
+      <columnOverride column="f_corp_id" property="corpId" javaType="Long"/>
+      <columnOverride column="f_keyword" property="keyWord" javaType="String"/>
+      <columnOverride column="f_from" property="from" javaType="Integer"/>
+      <columnOverride column="f_ip" property="IP" javaType="String"/>
+    </table>
+    <table catalog="d_mzone" schema="d_mzone" tableName="t_corp_disksize" domainObjectName="CorpDisk"
+      enableCountByExample="false"
+      enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+      selectByExampleQueryId="false">
+      <property name="ignoreQualifiersAtRuntime" value="true"/>
+      <columnRenamingRule searchString="^f_" replaceString=""/>
+      <columnOverride column="f_corp_id" property="corpId" javaType="Long"/>
+      <columnOverride column="f_remain_size" property="remainSize" javaType="Long"/>
+      <columnOverride column="f_disk_size" property="diskSize" javaType="Long"/>
+      <columnOverride column="f_valid" property="isValid" javaType="Integer"/>
+      <columnOverride column="f_create_time" property="createTime" javaType="java.util.Date"/>
+      <columnOverride column="f_modify_time" property="modifyTime" javaType="java.util.Date"/>
+    </table>
+    <table catalog="d_ec_corp" schema="d_ec_corp" tableName="t_corp_function"
+      domainObjectName="CorpFunction" enableCountByExample="false"
+      enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+      selectByExampleQueryId="false">
+      <property name="ignoreQualifiersAtRuntime" value="true"/>
+      <columnRenamingRule searchString="^f_" replaceString=""/>
+      <columnOverride column="f_corp_id" property="corpId" javaType="Long"/>
+      <columnOverride column="f_tel_function" property="telFun" javaType="Integer"/>
+      <columnOverride column="f_sms_function" property="smsFun" javaType="Integer"/>
+      <columnOverride column="f_cs_function" property="csFun" javaType="Integer"/>
+      <columnOverride column="f_cs_opentime" property="csOpenTime" javaType="java.util.Date"/>
+      <columnOverride column="f_mail_function" property="mailFun" javaType="Integer"/>
+      <columnOverride column="f_cs_timeout" property="csTimeout" javaType="java.util.Date"/>
+      <columnOverride column="f_cs_type" property="csType" javaType="Integer"/>
+      <columnOverride column="f_cs_update" property="csUpdate" javaType="String"/>
+      <columnOverride column="f_qqcs_update" property="qqcsUpdate" javaType="Integer"/>
+      <columnOverride column="f_ss_function" property="ecFun" javaType="Integer"/>
+      <columnOverride column="f_box_function" property="boxFun" javaType="Integer"/>
+      <columnOverride column="f_weixin_function" property="weixinFun" javaType="Integer"/>
+      <columnOverride column="f_eim_function" property="eimFun" javaType="Integer"/>
+      <columnOverride column="f_userqq_function" property="userQQFun" javaType="Integer"/>
+      <columnOverride column="f_wxcorp" property="workWeixinFun" javaType="Integer"/>
+    </table>
+    <table catalog="d_ec_finance" schema="d_ec_finance" tableName="t_corp_accout"
+      domainObjectName="CorpAccount" enableCountByExample="false"
+      enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+      selectByExampleQueryId="false">
+      <property name="ignoreQualifiersAtRuntime" value="true"/>
+      <columnRenamingRule searchString="^f_" replaceString=""/>
+      <columnOverride column="f_corp_id" property="corpId" javaType="Long"/>
+      <columnOverride column="f_create_time" property="createTime" javaType="java.util.Date"/>
+      <columnOverride column="f_update_time" property="updateTime" javaType="java.util.Date"/>
+      <columnOverride column="f_ss_timeout" property="ecTimeout" javaType="java.util.Date"/>
+      <columnOverride column="f_box_timeout" property="boxTimeout" javaType="java.util.Date"/>
+      <columnOverride column="f_box_num" property="boxNum" javaType="Integer"/>
+      <columnOverride column="f_account_num" property="buyECAccountNum" javaType="Integer"/>
+      <columnOverride column="f_ss_curr_pro " property="ecPkgId" javaType="Integer"/>
+      <columnOverride column="f_weixin_timeout" property="weixinTimeout" javaType="java.util.Date"/>
+      <columnOverride column="f_givebox_num" property="giveBoxNum" javaType="Integer"/>
+      <columnOverride column="f_form_function" property="formFun" javaType="Integer"/>
+      <columnOverride column="f_form_timeout" property="formTimeout" javaType="java.util.Date"/>
+      <columnOverride column="f_form_type" property="formType" javaType="Integer"/>
+    </table>
+    <table catalog="d_ec_corp" schema="d_ec_corp" tableName="t_corp_vplan" domainObjectName="CorpVplan"
+      enableCountByExample="false"
+      enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+      selectByExampleQueryId="false">
+      <property name="ignoreQualifiersAtRuntime" value="true"/>
+      <columnRenamingRule searchString="^f_" replaceString=""/>
+      <columnOverride column="f_corp_id" property="corpId" javaType="Long"/>
+      <columnOverride column="f_time" property="createTime" javaType="java.util.Date"/>
+      <columnOverride column="f_from" property="planFrom" javaType="Integer"/>
+      <columnOverride column="f_type" property="planType" javaType="Integer"/>
+    </table>
+    <table catalog="d_ec_corp" schema="d_ec_corp" tableName="t_corp_structure_change" domainObjectName="CorpStructureChange"
+      enableCountByExample="false"
+      enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+      selectByExampleQueryId="false">
+      <property name="ignoreQualifiersAtRuntime" value="true"/>
+      <columnRenamingRule searchString="^f_" replaceString=""/>
+      <columnOverride column="f_id" property="id" javaType="Long"/>
+      <columnOverride column="f_type" property="type" javaType="Integer"/>
+      <columnOverride column="f_change_type" property="changeType" javaType="Integer"/>
+    </table>
+    <table catalog="d_ec_user" schema="d_ec_user" tableName="t_user_function" domainObjectName="UserFunction"
+      enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+		   enableSelectByExample="false" selectByExampleQueryId="false">
+		<columnRenamingRule searchString="^f_" replaceString="" />
+		<columnOverride column="f_telphone" property="telphone" javaType="Integer"/>
+		<columnOverride column="f_fax" property="fax" javaType="Integer"/>
+		<columnOverride column="f_sms" property="sms" javaType="Integer"/>
+		<columnOverride column="f_auctionrank" property="auctionrank" javaType="Integer"/>
+		<columnOverride column="f_mail" property="mail" javaType="Integer"/>
+		<columnOverride column="f_tel400" property="tel400" javaType="Integer"/>
+		<columnOverride column="f_cs" property="cs" javaType="Integer"/>
+		<columnOverride column="f_qq" property="qq" javaType="Integer"/>
+		<columnOverride column="f_ec_out" property="ecOut" javaType="Integer"/>
+		<columnOverride column="f_msn" property="msn" javaType="Integer"/>
+		<columnOverride column="f_group_view" property="groupView" javaType="Integer"/>
+		<columnOverride column="f_record" property="record" javaType="Integer"/>
+		<columnOverride column="f_weixin_lq" property="weixinLq" javaType="Integer"/>
+		<columnOverride column="f_crm_mobile" property="crmMobile" javaType="Integer"/>
+		<columnOverride column="f_yun" property="yun" javaType="Integer"/>
+    </table>
+	  <table catalog="d_ec_lite" tableName="t_user_lastmsg" delimitIdentifiers="true" domainObjectName="UserLastmsg" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+		  <columnRenamingRule searchString="^f_" replaceString="" />
+		  <columnOverride column="f_user_id" property="userId" javaType="Long"/>
+		  <columnOverride column="f_type" property="type" javaType="Integer"/>
+		  <columnOverride column="f_from_uid" property="fromUid" javaType="Long"/>
+	  </table>
+	  <table catalog="d_ec_corp" tableName="t_migrate_log" delimitIdentifiers="true" domainObjectName="MigrateLog" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+		  <columnRenamingRule searchString="^f_" replaceString="" />
+		  <columnOverride column="f_corp_id" property="corpId" javaType="Long"/>
+		  <columnOverride column="f_agent_id" property="agentId" javaType="Long"/>
+		  <columnOverride column="f_target_agent" property="targetAgent" javaType="Long"/>
+		  <columnOverride column="f_agent_csid" property="agentCsid" javaType="Long"/>
+		  <columnOverride column="f_agent_gjid" property="agentGjid" javaType="Long"/>
+	  </table>
+	  <table catalog="d_ec_corp" tableName="t_corp_extra" delimitIdentifiers="true" domainObjectName="CorpExtra" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+		  <columnRenamingRule searchString="^f_" replaceString="" />
+		  <columnOverride column="f_corp_id" property="corpId" javaType="Long"/>
+		  <columnOverride column="f_move_type" property="moveType" javaType="Integer"/>
+		  <columnOverride column="f_agent_id" property="agentId" javaType="Long"/>
+		  <columnOverride column="f_agent_csid" property="agentCsid" javaType="Long"/>
+		  <columnOverride column="f_agent_gjid" property="agentGjid" javaType="Long"/>
+	  </table>-->
+	  <table catalog="d_ec_sys" tableName="t_bulletin" delimitIdentifiers="true" domainObjectName="Bulletin" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+		  <columnRenamingRule searchString="^f_" replaceString="" />
+		  <columnOverride column="f_type" property="type" javaType="Integer"/>
+		  <columnOverride column="f_flag" property="flag" javaType="Integer"/>
+		  <columnOverride column="f_status" property="status" javaType="Integer"/>
+		  <columnOverride column="f_sure" property="sure" javaType="Integer"/>
+		  <columnOverride column="f_issue" property="issur" javaType="Integer"/>
+		  <columnOverride column="f_content" property="content" javaType="String"/>
+		  <columnOverride column="f_ids" property="ids" javaType="String"/>
+		  <columnOverride column="f_open_type" property="openType" javaType="Integer"/>
+		  <columnOverride column="f_is_top" property="isTop" javaType="Integer"/>
+	  </table>
+	  <table catalog="d_ec_sys" tableName="t_bulletin_to" delimitIdentifiers="true" domainObjectName="BulletinTo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+		  <columnRenamingRule searchString="^f_" replaceString="" />
+		  <columnOverride column="f_type" property="type" javaType="Integer"/>
+		  <columnOverride column="f_term" property="term" javaType="Integer"/>
+		  <columnOverride column="f_province" property="province" javaType="Integer"/>
+		  <columnOverride column="f_is_top" property="isTop" javaType="Integer"/>
+	  </table>
+
+  </context>
+</generatorConfiguration>

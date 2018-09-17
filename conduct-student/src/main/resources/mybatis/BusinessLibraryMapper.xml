@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liuym.student.repository.mapper.base.BusinessLibraryMapper">
+  <resultMap id="BaseResultMap" type="com.liuym.student.repository.model.entity.BusinessLibrary">
+    <id column="f_id" jdbcType="BIGINT" property="id" />
+    <result column="f_corp_id" jdbcType="BIGINT" property="corpId" />
+    <result column="f_corp_name" jdbcType="VARCHAR" property="corpName" />
+    <result column="f_contact_mobile" jdbcType="VARCHAR" property="contactMobile" />
+    <result column="f_contact_tel" jdbcType="VARCHAR" property="contactTel" />
+    <result column="f_contact_tel_ext" jdbcType="VARCHAR" property="contactTelExt" />
+    <result column="f_contact_name" jdbcType="VARCHAR" property="contactName" />
+    <result column="f_contact_position" jdbcType="VARCHAR" property="contactPosition" />
+    <result column="f_country_id" jdbcType="INTEGER" property="countryId" />
+    <result column="f_province_id" jdbcType="INTEGER" property="provinceId" />
+    <result column="f_city_id" jdbcType="INTEGER" property="cityId" />
+    <result column="f_vocation" jdbcType="VARCHAR" property="vocation" />
+    <result column="f_type" jdbcType="INTEGER" property="type" />
+    <result column="f_status" jdbcType="TINYINT" property="status" />
+    <result column="f_import_status" jdbcType="TINYINT" property="importStatus" />
+    <result column="f_import_remark" jdbcType="VARCHAR" property="importRemark" />
+    <result column="f_belong_id" jdbcType="INTEGER" property="belongId" />
+    <result column="f_belong_name" jdbcType="VARCHAR" property="belongName" />
+    <result column="f_agent_id" jdbcType="INTEGER" property="agentId" />
+    <result column="f_remark" jdbcType="VARCHAR" property="remark" />
+    <result column="f_created_by" jdbcType="INTEGER" property="createdBy" />
+    <result column="f_created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="f_updated_by" jdbcType="INTEGER" property="updatedBy" />
+    <result column="f_updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="f_source_id" jdbcType="INTEGER" property="sourceId" />
+    <result column="f_allot_num" jdbcType="INTEGER" property="allotNum" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    f_id, f_corp_id, f_corp_name, f_contact_mobile, f_contact_tel, f_contact_tel_ext, 
+    f_contact_name, f_contact_position, f_country_id, f_province_id, f_city_id, f_vocation, 
+    f_type, f_status, f_import_status, f_import_remark, f_belong_id, f_belong_name, f_agent_id, 
+    f_remark, f_created_by, f_created_at, f_updated_by, f_updated_at, f_source_id, f_allot_num
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `d_ec_business`.`t_business_library`
+    where f_id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="Long">
+    delete from `d_ec_business`.`t_business_library`
+    where f_id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.liuym.student.repository.model.entity.BusinessLibrary">
+    insert into `d_ec_business`.`t_business_library` (f_id, f_corp_id, f_corp_name, 
+      f_contact_mobile, f_contact_tel, f_contact_tel_ext, 
+      f_contact_name, f_contact_position, f_country_id, 
+      f_province_id, f_city_id, f_vocation, 
+      f_type, f_status, f_import_status, 
+      f_import_remark, f_belong_id, f_belong_name, 
+      f_agent_id, f_remark, f_created_by, 
+      f_created_at, f_updated_by, f_updated_at, 
+      f_source_id, f_allot_num)
+    values (#{id,jdbcType=BIGINT}, #{corpId,jdbcType=BIGINT}, #{corpName,jdbcType=VARCHAR}, 
+      #{contactMobile,jdbcType=VARCHAR}, #{contactTel,jdbcType=VARCHAR}, #{contactTelExt,jdbcType=VARCHAR}, 
+      #{contactName,jdbcType=VARCHAR}, #{contactPosition,jdbcType=VARCHAR}, #{countryId,jdbcType=INTEGER}, 
+      #{provinceId,jdbcType=INTEGER}, #{cityId,jdbcType=INTEGER}, #{vocation,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{status,jdbcType=TINYINT}, #{importStatus,jdbcType=TINYINT}, 
+      #{importRemark,jdbcType=VARCHAR}, #{belongId,jdbcType=INTEGER}, #{belongName,jdbcType=VARCHAR}, 
+      #{agentId,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{createdBy,jdbcType=INTEGER}, 
+      #{createdAt,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=INTEGER}, #{updatedAt,jdbcType=TIMESTAMP}, 
+      #{sourceId,jdbcType=INTEGER}, #{allotNum,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective"  useGeneratedKeys="true" keyProperty="id" parameterType="com.liuym.student.repository.model.entity.BusinessLibrary">
+    insert into `d_ec_business`.`t_business_library`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        f_id,
+      </if>
+      <if test="corpId != null">
+        f_corp_id,
+      </if>
+      <if test="corpName != null">
+        f_corp_name,
+      </if>
+      <if test="contactMobile != null">
+        f_contact_mobile,
+      </if>
+      <if test="contactTel != null">
+        f_contact_tel,
+      </if>
+      <if test="contactTelExt != null">
+        f_contact_tel_ext,
+      </if>
+      <if test="contactName != null">
+        f_contact_name,
+      </if>
+      <if test="contactPosition != null">
+        f_contact_position,
+      </if>
+      <if test="countryId != null">
+        f_country_id,
+      </if>
+      <if test="provinceId != null">
+        f_province_id,
+      </if>
+      <if test="cityId != null">
+        f_city_id,
+      </if>
+      <if test="vocation != null">
+        f_vocation,
+      </if>
+      <if test="type != null">
+        f_type,
+      </if>
+      <if test="status != null">
+        f_status,
+      </if>
+      <if test="importStatus != null">
+        f_import_status,
+      </if>
+      <if test="importRemark != null">
+        f_import_remark,
+      </if>
+      <if test="belongId != null">
+        f_belong_id,
+      </if>
+      <if test="belongName != null">
+        f_belong_name,
+      </if>
+      <if test="agentId != null">
+        f_agent_id,
+      </if>
+      <if test="remark != null">
+        f_remark,
+      </if>
+      <if test="createdBy != null">
+        f_created_by,
+      </if>
+      <if test="createdAt != null">
+        f_created_at,
+      </if>
+      <if test="updatedBy != null">
+        f_updated_by,
+      </if>
+      <if test="updatedAt != null">
+        f_updated_at,
+      </if>
+      <if test="sourceId != null">
+        f_source_id,
+      </if>
+      <if test="allotNum != null">
+        f_allot_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="corpId != null">
+        #{corpId,jdbcType=BIGINT},
+      </if>
+      <if test="corpName != null">
+        #{corpName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactMobile != null">
+        #{contactMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="contactTel != null">
+        #{contactTel,jdbcType=VARCHAR},
+      </if>
+      <if test="contactTelExt != null">
+        #{contactTelExt,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null">
+        #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPosition != null">
+        #{contactPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="countryId != null">
+        #{countryId,jdbcType=INTEGER},
+      </if>
+      <if test="provinceId != null">
+        #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null">
+        #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="vocation != null">
+        #{vocation,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="importStatus != null">
+        #{importStatus,jdbcType=TINYINT},
+      </if>
+      <if test="importRemark != null">
+        #{importRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="belongId != null">
+        #{belongId,jdbcType=INTEGER},
+      </if>
+      <if test="belongName != null">
+        #{belongName,jdbcType=VARCHAR},
+      </if>
+      <if test="agentId != null">
+        #{agentId,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        #{updatedBy,jdbcType=INTEGER},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sourceId != null">
+        #{sourceId,jdbcType=INTEGER},
+      </if>
+      <if test="allotNum != null">
+        #{allotNum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liuym.student.repository.model.entity.BusinessLibrary">
+    update `d_ec_business`.`t_business_library`
+    <set>
+      <if test="corpId != null">
+        f_corp_id = #{corpId,jdbcType=BIGINT},
+      </if>
+      <if test="corpName != null">
+        f_corp_name = #{corpName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactMobile != null">
+        f_contact_mobile = #{contactMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="contactTel != null">
+        f_contact_tel = #{contactTel,jdbcType=VARCHAR},
+      </if>
+      <if test="contactTelExt != null">
+        f_contact_tel_ext = #{contactTelExt,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null">
+        f_contact_name = #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPosition != null">
+        f_contact_position = #{contactPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="countryId != null">
+        f_country_id = #{countryId,jdbcType=INTEGER},
+      </if>
+      <if test="provinceId != null">
+        f_province_id = #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null">
+        f_city_id = #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="vocation != null">
+        f_vocation = #{vocation,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        f_type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        f_status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="importStatus != null">
+        f_import_status = #{importStatus,jdbcType=TINYINT},
+      </if>
+      <if test="importRemark != null">
+        f_import_remark = #{importRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="belongId != null">
+        f_belong_id = #{belongId,jdbcType=INTEGER},
+      </if>
+      <if test="belongName != null">
+        f_belong_name = #{belongName,jdbcType=VARCHAR},
+      </if>
+      <if test="agentId != null">
+        f_agent_id = #{agentId,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        f_remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null">
+        f_created_by = #{createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null">
+        f_created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        f_updated_by = #{updatedBy,jdbcType=INTEGER},
+      </if>
+      <if test="updatedAt != null">
+        f_updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sourceId != null">
+        f_source_id = #{sourceId,jdbcType=INTEGER},
+      </if>
+      <if test="allotNum != null">
+        f_allot_num = #{allotNum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where f_id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liuym.student.repository.model.entity.BusinessLibrary">
+    update `d_ec_business`.`t_business_library`
+    set f_corp_id = #{corpId,jdbcType=BIGINT},
+      f_corp_name = #{corpName,jdbcType=VARCHAR},
+      f_contact_mobile = #{contactMobile,jdbcType=VARCHAR},
+      f_contact_tel = #{contactTel,jdbcType=VARCHAR},
+      f_contact_tel_ext = #{contactTelExt,jdbcType=VARCHAR},
+      f_contact_name = #{contactName,jdbcType=VARCHAR},
+      f_contact_position = #{contactPosition,jdbcType=VARCHAR},
+      f_country_id = #{countryId,jdbcType=INTEGER},
+      f_province_id = #{provinceId,jdbcType=INTEGER},
+      f_city_id = #{cityId,jdbcType=INTEGER},
+      f_vocation = #{vocation,jdbcType=VARCHAR},
+      f_type = #{type,jdbcType=INTEGER},
+      f_status = #{status,jdbcType=TINYINT},
+      f_import_status = #{importStatus,jdbcType=TINYINT},
+      f_import_remark = #{importRemark,jdbcType=VARCHAR},
+      f_belong_id = #{belongId,jdbcType=INTEGER},
+      f_belong_name = #{belongName,jdbcType=VARCHAR},
+      f_agent_id = #{agentId,jdbcType=INTEGER},
+      f_remark = #{remark,jdbcType=VARCHAR},
+      f_created_by = #{createdBy,jdbcType=INTEGER},
+      f_created_at = #{createdAt,jdbcType=TIMESTAMP},
+      f_updated_by = #{updatedBy,jdbcType=INTEGER},
+      f_updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      f_source_id = #{sourceId,jdbcType=INTEGER},
+      f_allot_num = #{allotNum,jdbcType=INTEGER}
+    where f_id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="getBusinessByNumber" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    f_id
+    from `d_ec_business`.`t_business_library`
+    where f_contact_mobile = #{number}
+  </select>
+  <!--Map<INTEGER,BusinessLibrary> getInfoByCompName(String compName);-->
+
+  <select id="getInfoByCompName" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from `d_ec_business`.`t_business_library`
+    where f_corp_name = #{corpName}
+  </select>
+  <update id="updateBusinessAgent">
+    update `d_ec_business`.`t_business_library`
+    set f_agent_id = #{agentId},f_status = 2,f_import_remark = '',
+    where f_id in
+    <foreach collection="businessIds" item="businessId" separator="," open=" (" close=")">
+      #{businessId}
+    </foreach>
+  </update>
+  <!--迁移商机的更新人-->
+  <update id="alltoAgent">
+    update `d_ec_business`.`t_business_library`
+    set f_agent_id = #{agentId},f_status = 2,f_import_remark = ''
+    where f_id in
+    <foreach collection="businessIds" item="businessId" separator="," open=" (" close=")">
+      #{businessId}
+    </foreach>
+  </update>
+</mapper>

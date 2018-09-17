@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="ERROR" monitorInterval="60">
+    <Properties>
+        <Property name="filePathPrefix">/data/logs/corp-info</Property>
+        <!-- mail server configuration -->
+        <property name="receipients">wangrui@ecqun.com</property>
+        <property name="from">java2015@ecqun.com(ERROR_LOG)</property>
+        <property name="smtpHost">smtp.exmail.qq.com</property>
+        <property name="smtpPort">25</property>
+        <property name="smtpProtocol">smtp</property>
+        <property name="smtpUser">java2015@ecqun.com</property>
+        <property name="smtpPassword">Workec@201505</property>
+    </Properties>
+    <Appenders>
+        <Console name="CONSOLE" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d-%r-[%t]-%class.%M-[%L]-%level-%m%n" />
+        </Console>
+        
+        <!-- Async Loggers will auto-flush in batches, so switch off immediateFlush. -->
+        <!-- bufferSize int The buffer size, defaults to 262,144 bytes (256 * 1024). -->
+        <RollingRandomAccessFile name="stdout" fileName="${filePathPrefix}/stdout.log" immediateFlush="true" append="true"
+            filePattern="${filePathPrefix}/$${date:yyyy-MM}/stdout-%d{yyyy-MM-dd}-%i.log">
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="100MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="50" />
+            <PatternLayout>
+                <Pattern>%d-%r-[%t]-%class.%M-[%L]-%level-%m%n</Pattern>
+            </PatternLayout>
+        </RollingRandomAccessFile>
+        
+        <RollingRandomAccessFile name="error"  fileName="${filePathPrefix}/error.log" immediateFlush="true" append="true"
+            filePattern="${filePathPrefix}/$${date:yyyy-MM}/error-%d{yyyy-MM-dd}-%i.log">
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="100MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="50" />
+            <PatternLayout>
+                <Pattern>%d-[%t]-%m%n</Pattern>
+            </PatternLayout>
+        </RollingRandomAccessFile>
+        <RollingRandomAccessFile name="performance" fileName="${filePathPrefix}/performance.log" immediateFlush="true" append="true"
+                                 filePattern="${filePathPrefix}/$${date:yyyy-MM}/performance-%d{yyyy-MM-dd}-%i.log">
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="100MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="50" />
+            <PatternLayout>
+                <Pattern>[corp-info] %d - %X{msg.id} - %C -%-4r [%t] %-5p %x - %m%n</Pattern>
+            </PatternLayout>
+        </RollingRandomAccessFile>
+        <RollingRandomAccessFile name="imfaillog"  fileName="${filePathPrefix}/imfaillog.log" immediateFlush="true" append="true"
+            filePattern="${filePathPrefix}/$${date:yyyy-MM}/imfaillog-%d{yyyy-MM-dd}-%i.log">
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="100MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="50" />
+            <PatternLayout>
+                <Pattern>%d-[%t]-%m%n</Pattern>
+            </PatternLayout>
+        </RollingRandomAccessFile>
+
+        <SMTP name="Mailer" subject="[${processName}][${hostName}]-ERROR"
+              to="${receipients}" from="${from}" smtpHost="${smtpHost}" smtpPort="${smtpPort}"
+              smtpProtocol="${smtpProtocol}" smtpUsername="${smtpUser}"
+              smtpPassword="${smtpPassword}" smtpDebug="false" bufferSize="30">
+        </SMTP>
+        <!-- appender to send mails asynchronously -->
+        <Async name="AsyncMailer"  blocking="false">
+            <appender-ref ref="Mailer"/>
+        </Async>
+
+    </Appenders>
+    <Loggers>
+        <logger name="org.springframework" level="WARN" ></logger>
+        <logger name="java.net" level="ERROR" ></logger>
+        <logger name="net.sf.log4jdbc" level="ERROR" ></logger>
+        <logger name="org.apache.mina" level="ERROR" ></logger>
+        <logger name="io.netty.util.internal.logging" level="ERROR"></logger>
+        <logger name="com.ec.corpinfo.common.logger.PerformanceLogger" level="INFO" additivity="false">
+            <AppenderRef ref="performance" />
+            <AppenderRef ref="CONSOLE"/>
+        </logger>
+        <logger name="com.ec.corpinfo.repository.mapper" level="debug"></logger>
+        <Root level="info" includeLocation="true">
+            <AppenderRef ref="stdout" level="info" />
+            <AppenderRef ref="error" level="ERROR"/>
+            <AppenderRef ref="CONSOLE"/>
+            <!--<AppenderRef ref="AsyncMailer" level="ERROR"/>-->
+        </Root>
+
+    </Loggers>
+</Configuration>

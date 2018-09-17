@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ec.corpinfo.repository.mapper.base.UserLastmsgMapper">
+  <resultMap id="BaseResultMap" type="com.ec.corpinfo.repository.model.entity.UserLastmsg">
+    <id column="f_id" jdbcType="BIGINT" property="id" />
+    <result column="f_user_id" jdbcType="INTEGER" property="userId" />
+    <result column="f_type" jdbcType="SMALLINT" property="type" />
+    <result column="f_from_uid" jdbcType="INTEGER" property="fromUid" />
+    <result column="f_from_uname" jdbcType="VARCHAR" property="fromUname" />
+    <result column="f_last_msg" jdbcType="VARCHAR" property="lastMsg" />
+    <result column="f_last_datetime" jdbcType="TIMESTAMP" property="lastDatetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    f_id, f_user_id, f_type, f_from_uid, f_from_uname, f_last_msg, f_last_datetime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `d_ec_lite`.`t_user_lastmsg`
+    where f_id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from `d_ec_lite`.`t_user_lastmsg`
+    where f_id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ec.corpinfo.repository.model.entity.UserLastmsg">
+    insert into `d_ec_lite`.`t_user_lastmsg` (f_id, f_user_id, f_type,
+      f_from_uid, f_from_uname, f_last_msg, 
+      f_last_datetime)
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=INTEGER}, #{type,jdbcType=SMALLINT}, 
+      #{fromUid,jdbcType=INTEGER}, #{fromUname,jdbcType=VARCHAR}, #{lastMsg,jdbcType=VARCHAR}, 
+      #{lastDatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ec.corpinfo.repository.model.entity.UserLastmsg">
+    insert into `d_ec_lite`.`t_user_lastmsg`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        f_id,
+      </if>
+      <if test="userId != null">
+        f_user_id,
+      </if>
+      <if test="type != null">
+        f_type,
+      </if>
+      <if test="fromUid != null">
+        f_from_uid,
+      </if>
+      <if test="fromUname != null">
+        f_from_uname,
+      </if>
+      <if test="lastMsg != null">
+        f_last_msg,
+      </if>
+      <if test="lastDatetime != null">
+        f_last_datetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=SMALLINT},
+      </if>
+      <if test="fromUid != null">
+        #{fromUid,jdbcType=INTEGER},
+      </if>
+      <if test="fromUname != null">
+        #{fromUname,jdbcType=VARCHAR},
+      </if>
+      <if test="lastMsg != null">
+        #{lastMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="lastDatetime != null">
+        #{lastDatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ec.corpinfo.repository.model.entity.UserLastmsg">
+    update `d_ec_lite`.`t_user_lastmsg`
+    <set>
+      <if test="userId != null">
+        f_user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        f_type = #{type,jdbcType=SMALLINT},
+      </if>
+      <if test="fromUid != null">
+        f_from_uid = #{fromUid,jdbcType=INTEGER},
+      </if>
+      <if test="fromUname != null">
+        f_from_uname = #{fromUname,jdbcType=VARCHAR},
+      </if>
+      <if test="lastMsg != null">
+        f_last_msg = #{lastMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="lastDatetime != null">
+        f_last_datetime = #{lastDatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where f_id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ec.corpinfo.repository.model.entity.UserLastmsg">
+    update `d_ec_lite`.`t_user_lastmsg`
+    set f_user_id = #{userId,jdbcType=INTEGER},
+      f_type = #{type,jdbcType=SMALLINT},
+      f_from_uid = #{fromUid,jdbcType=INTEGER},
+      f_from_uname = #{fromUname,jdbcType=VARCHAR},
+      f_last_msg = #{lastMsg,jdbcType=VARCHAR},
+      f_last_datetime = #{lastDatetime,jdbcType=TIMESTAMP}
+    where f_id = #{id,jdbcType=BIGINT}
+  </update>
+
+	<insert id="batchReplace" parameterType="java.util.ArrayList">
+		<foreach collection="list" index="index" item="item" separator=";">
+			replace into `d_ec_lite`.`t_user_lastmsg` (f_id, f_user_id, f_type,
+			f_from_uid, f_from_uname, f_last_msg,
+			f_last_datetime)
+			values (#{item.id,jdbcType=BIGINT}, #{item.userId,jdbcType=INTEGER}, #{item.type,jdbcType=SMALLINT},
+			#{item.fromUid,jdbcType=INTEGER}, #{item.fromUname,jdbcType=VARCHAR}, #{item.lastMsg,jdbcType=VARCHAR},
+			#{item.lastDatetime,jdbcType=TIMESTAMP})
+		</foreach>
+	</insert>
+
+	<insert id="replace" parameterType="com.ec.corpinfo.repository.model.entity.UserLastmsg">
+		replace into `d_ec_lite`.`t_user_lastmsg` (f_id, f_user_id, f_type,
+		f_from_uid, f_from_uname, f_last_msg,
+		f_last_datetime)
+		values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=INTEGER}, #{type,jdbcType=SMALLINT},
+		#{fromUid,jdbcType=INTEGER}, #{fromUname,jdbcType=VARCHAR}, #{lastMsg,jdbcType=VARCHAR},
+		#{lastDatetime,jdbcType=TIMESTAMP})
+	</insert>
+</mapper>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liuym.student.repository.mapper.base.BusinessAllotMapper">
+  <resultMap id="BaseResultMap" type="com.liuym.student.repository.model.entity.BusinessAllot">
+    <id column="f_id" jdbcType="INTEGER" property="id"/>
+    <result column="f_business_id" jdbcType="BIGINT" property="businessId"/>
+    <result column="f_type" jdbcType="INTEGER" property="type"/>
+    <result column="f_agent_id" jdbcType="INTEGER" property="agentId"/>
+    <result column="f_time" jdbcType="TIMESTAMP" property="time"/>
+    <result column="f_operation_id" jdbcType="INTEGER" property="operationId"/>
+  </resultMap>
+  <sql id="Base_Column_List">
+    f_id, f_business_id, f_type, f_agent_id, f_time, f_operation_id
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `d_ec_business`.`t_business_allot`
+    where f_id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from `d_ec_business`.`t_business_allot`
+    where f_id = #{id,jdbcType=INTEGER}
+  </delete>
+
+
+  <!-- 通过 商机id + 代理商id，获取分配记录 -->
+  <select id="checkAllotByBusAndAgt" parameterType="java.util.Map" resultType="java.lang.Integer">
+   SELECT COUNT(*)
+   FROM `d_ec_business`.`t_business_allot`
+   WHERE f_business_id = #{businessId,jdbcType=INTEGER}
+   AND  f_agent_id = #{agentId,jdbcType=INTEGER}
+ </select>
+
+  <!-- 通过 map 查询条件，更新数据表 -->
+  <update id="replaceByMap" parameterType="com.liuym.student.repository.model.entity.BusinessAllot">
+    insert into `d_ec_business`.`t_business_allot`
+    (f_business_id, f_type, f_agent_id, f_time, f_operation_id)
+  	values(#{businessId,jdbcType=INTEGER},#{type,jdbcType=INTEGER},
+  	#{agentId,jdbcType=INTEGER},#{time},
+  	#{operationId,jdbcType=INTEGER} )
+  	on duplicate key update f_business_id = #{businessId,jdbcType=INTEGER} ,
+  	f_type =  #{type,jdbcType=INTEGER},
+  	f_agent_id = #{agentId,jdbcType=INTEGER},
+  	f_time = #{time},
+  	f_operation_id = #{operationId,jdbcType=INTEGER}
+  </update>
+
+
+  <insert id="insert" parameterType="com.liuym.student.repository.model.entity.BusinessAllot">
+    insert into `d_ec_business`.`t_business_allot` (f_id, f_business_id, f_type,
+      f_agent_id, f_time, f_operation_id
+      )
+    values (#{id,jdbcType=INTEGER}, #{businessId,jdbcType=BIGINT}, #{type,jdbcType=INTEGER}, 
+      #{agentId,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}, #{operationId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.liuym.student.repository.model.entity.BusinessAllot">
+    insert into `d_ec_business`.`t_business_allot`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        f_id,
+      </if>
+      <if test="businessId != null">
+        f_business_id,
+      </if>
+      <if test="type != null">
+        f_type,
+      </if>
+      <if test="agentId != null">
+        f_agent_id,
+      </if>
+      <if test="time != null">
+        f_time,
+      </if>
+      <if test="operationId != null">
+        f_operation_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="businessId != null">
+        #{businessId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="agentId != null">
+        #{agentId,jdbcType=INTEGER},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operationId != null">
+        #{operationId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liuym.student.repository.model.entity.BusinessAllot">
+    update `d_ec_business`.`t_business_allot`
+    <set>
+      <if test="businessId != null">
+        f_business_id = #{businessId,jdbcType=BIGINT},
+      </if>
+      <if test="type != null">
+        f_type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="agentId != null">
+        f_agent_id = #{agentId,jdbcType=INTEGER},
+      </if>
+      <if test="time != null">
+        f_time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operationId != null">
+        f_operation_id = #{operationId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where f_id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liuym.student.repository.model.entity.BusinessAllot">
+    update `d_ec_business`.`t_business_allot`
+    set f_business_id = #{businessId,jdbcType=BIGINT},
+      f_type = #{type,jdbcType=INTEGER},
+      f_agent_id = #{agentId,jdbcType=INTEGER},
+      f_time = #{time,jdbcType=TIMESTAMP},
+      f_operation_id = #{operationId,jdbcType=INTEGER}
+    where f_id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
