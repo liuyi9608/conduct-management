@@ -60,58 +60,8 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
             <optional>true</optional>
         </dependency>
-        <!--公共组件-->
-        <dependency>
-            <groupId>com.ec</groupId>
-            <artifactId>springbt-common-db</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>com.ec</groupId>
-            <artifactId>springbt-common-thrift</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>com.ec</groupId>
-            <artifactId>springbt-common-nsq</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>com.ec</groupId>
-            <artifactId>springbt-common-shutdown</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>com.ec</groupId>
-            <artifactId>springbt-common-redis</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>com.ec</groupId>
-            <artifactId>springbt-common-globalid</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>com.ec</groupId>
-            <artifactId>springbt-common-async</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <!--xdiamond-->
-        <dependency>
-            <groupId>com.ec.xdiamond</groupId>
-            <artifactId>xdiamond-client</artifactId>
-            <optional>true</optional>
-            <exclusions>
-                <exclusion>
-                    <artifactId>spring-context</artifactId>
-                    <groupId>org.springframework</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>slf4j-api</artifactId>
-                    <groupId>org.slf4j</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
+
+
         <!--dubbo-->
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -160,12 +110,6 @@
             <version>2.4</version>
             <classifier>jdk15</classifier>
         </dependency>
-        <!--spring cloud consul-->
-        <!--        <dependency>
-                    <groupId>org.springframework.cloud</groupId>
-                    <artifactId>spring-cloud-starter-consul-discovery</artifactId>
-                    <optional>true</optional>
-                </dependency>-->
         <!-- 其他-->
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -208,8 +152,8 @@
             <artifactId>mybatis-generator-core</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.ec</groupId>
-            <artifactId>corp-common</artifactId>
+            <groupId>com.liuym</groupId>
+            <artifactId>conduct-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

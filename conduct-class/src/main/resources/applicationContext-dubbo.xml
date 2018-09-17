@@ -15,16 +15,17 @@
     <dubbo:protocol name="${dubbo.protocol.name}" port="${dubbo.protocol.port}" accepts="1000"/>
 
     <!-- 声明需要暴露的服务接口 -->
-    <dubbo:service interface="com.ec.corpcommon.dubbo.corpinfo.api.CorpInfoDubboService" ref="corpInfoDubboServiceImpl"/>
+  <dubbo:service interface="com.liuym.common.dubbo.classes.api.ConductClassesDubboService"
+    ref="conductClassesDubboServiceImpl"/>
 
     <!-- 生成远程服务代理，可以像使用本地bean一样使用userGroupService roundrobin -->
-    <dubbo:reference id="corpRecycleDubboApiImpl"
-                     interface="com.ec.corpcommon.dubbo.corprecycle.api.CorpRecycleDubboApi" check="false" loadbalance="roundrobin"/>
-    <dubbo:reference id="agentProtectDubboApi" interface="com.ec.corpcommon.dubbo.corpprotect.api.AgentProtectDubboService"
-                     check="false" loadbalance="roundrobin"/>
-	<dubbo:reference id="businessService" interface="com.ec.corpcommon.dubbo.corpbiz.api.BusinessDubboService" check="false" loadbalance="roundrobin"/>
-	<dubbo:reference id="userApiService" interface="com.ec.usercenter.service.UserApiService" check="false" loadbalance="roundrobin" version="0.0.1"/>
-	<dubbo:reference id="userCenterApi" interface="com.ec.usercenter.api.UserCenterApi$Iface" check="false" loadbalance="roundrobin" version="0.0.1"/>
+  <!-- <dubbo:reference id="corpRecycleDubboApiImpl"
+                    interface="com.ec.corpcommon.dubbo.corprecycle.api.CorpRecycleDubboApi" check="false" loadbalance="roundrobin"/>
+   <dubbo:reference id="agentProtectDubboApi" interface="com.ec.corpcommon.dubbo.corpprotect.api.AgentProtectDubboService"
+                    check="false" loadbalance="roundrobin"/>
+ <dubbo:reference id="businessService" interface="com.ec.corpcommon.dubbo.corpbiz.api.BusinessDubboService" check="false" loadbalance="roundrobin"/>
+ <dubbo:reference id="userApiService" interface="com.ec.usercenter.service.UserApiService" check="false" loadbalance="roundrobin" version="0.0.1"/>
+ <dubbo:reference id="userCenterApi" interface="com.ec.usercenter.api.UserCenterApi$Iface" check="false" loadbalance="roundrobin" version="0.0.1"/>-->
 
     <dubbo:provider filter="corpExceptionFilter"></dubbo:provider>
 </beans>

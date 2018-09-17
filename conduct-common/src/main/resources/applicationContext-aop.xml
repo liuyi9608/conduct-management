@@ -12,27 +12,6 @@
 
     <aop:aspectj-autoproxy proxy-target-class="true"/>
 
-    <aop:config proxy-target-class="true">
-        <aop:aspect id="entryLog" ref="entryLogger">
-            <aop:pointcut id="entryLogMethods" expression="execution(* com.ec.*.thrift.*.Iface.*(..))
-            and !execution(* com.liuym.common.thrift.CorpInfoApi.Iface.heart())
-            or execution(* com.ec.corpcommon.dubbo.*.api..*.*(..))"/>
-            <aop:around pointcut-ref="entryLogMethods" method="log"/>
-        </aop:aspect>
-        <aop:aspect id="exitLog" ref="exitLogger">
-            <aop:pointcut id="exitLogMethods" expression="execution(* com.liuym.common.thrift.CorpInfoApi.Iface.*(..))
-            and !execution(* com.liuym.common.thrift.CorpInfoApi.Iface.heart())
-            or execution(* com.ec.corpcommon.dubbo.corpinfo.api..*.*(..))"/>
-            <aop:around pointcut-ref="exitLogMethods" method="log"/>
-        </aop:aspect>
-        <aop:aspect id="perfLog" ref="performanceLogger">
-            <aop:pointcut id="perfLogMethods" expression="execution(* com.liuym.common.thrift.CorpInfoApi.Iface.*(..))
-            and !execution(* com.liuym.common.thrift.CorpInfoApi.Iface.heart())
-            or execution(* com.ec.corpcommon.dubbo.corpinfo.api..*.*(..))"/>
-            <aop:around pointcut-ref="perfLogMethods" method="log"/>
-        </aop:aspect>
-    </aop:config>
-
     <bean id="entryLogger" class="com.liuym.common.logger.EntryLogger"/>
     <bean id="exitLogger" class="com.liuym.common.logger.ExitLogger"/>
     <bean id="performanceLogger" class="com.liuym.common.logger.PerformanceLogger"/>

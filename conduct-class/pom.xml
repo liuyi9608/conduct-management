@@ -61,58 +61,6 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
             <optional>true</optional>
         </dependency>
-        <!--公共组件-->
-        <dependency>
-            <groupId>com.ec</groupId>
-            <artifactId>springbt-common-db</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>com.ec</groupId>
-            <artifactId>springbt-common-thrift</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>com.ec</groupId>
-            <artifactId>springbt-common-nsq</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>com.ec</groupId>
-            <artifactId>springbt-common-shutdown</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>com.ec</groupId>
-            <artifactId>springbt-common-redis</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>com.ec</groupId>
-            <artifactId>springbt-common-globalid</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>com.ec</groupId>
-            <artifactId>springbt-common-async</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <!--xdiamond-->
-        <dependency>
-            <groupId>com.ec.xdiamond</groupId>
-            <artifactId>xdiamond-client</artifactId>
-            <optional>true</optional>
-            <exclusions>
-                <exclusion>
-                    <artifactId>spring-context</artifactId>
-                    <groupId>org.springframework</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>slf4j-api</artifactId>
-                    <groupId>org.slf4j</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
         <!--dubbo-->
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -154,21 +102,6 @@
             <groupId>org.slf4j</groupId>
             <artifactId>log4j-over-slf4j</artifactId>
             <optional>true</optional>
-        </dependency>
-		<dependency>
-			<groupId>com.ec</groupId>
-			<artifactId>user-center</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-			<classifier>dubbo</classifier>
-			<optional>true</optional>
-		</dependency>
-        <!--spring cloud consul-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-dependencies</artifactId>
-            <version>${spring-cloud.version}</version>
-            <type>pom</type>
-            <scope>compile</scope>
         </dependency>
         <!-- 其他-->
         <dependency>
@@ -217,42 +150,13 @@
 
         <!--添加公共包依赖-->
         <dependency>
-            <groupId>com.ec</groupId>
-            <artifactId>corp-common</artifactId>
+            <groupId>com.liuym</groupId>
+            <artifactId>conduct-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-            <optional>true</optional>
+            <scope>compile</scope>
         </dependency>
-		<!--<dependency>
-			<groupId>com.ec</groupId>
-			<artifactId>corp-recycle</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.ec</groupId>
-			<artifactId>corp-protect</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.ec</groupId>
-			<artifactId>corp-biz</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-			<scope>compile</scope>
-		</dependency>-->
-    </dependencies>
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
+    </dependencies>
     <build>
         <plugins>
             <plugin>

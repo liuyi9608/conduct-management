@@ -54,61 +54,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
-        <!--公共组件-->
-        <dependency>
-            <groupId>com.ec</groupId>
-            <artifactId>springbt-common-db</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>com.ec</groupId>
-            <artifactId>springbt-common-thrift</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>com.ec</groupId>
-            <artifactId>springbt-common-nsq</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>com.ec</groupId>
-            <artifactId>springbt-common-shutdown</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>com.ec</groupId>
-            <artifactId>springbt-common-redis</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>com.ec</groupId>
-            <artifactId>springbt-common-globalid</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>com.ec</groupId>
-            <artifactId>springbt-common-async</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>com.ec</groupId>
-            <artifactId>corp-common</artifactId>
-        </dependency>
-        <!--xdiamond-->
-        <dependency>
-            <groupId>com.ec.xdiamond</groupId>
-            <artifactId>xdiamond-client</artifactId>
-            <exclusions>
-                <exclusion>
-                    <artifactId>spring-context</artifactId>
-                    <groupId>org.springframework</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>slf4j-api</artifactId>
-                    <groupId>org.slf4j</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
+
         <!--dubbo-->
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -150,23 +96,11 @@
             <artifactId>log4j-over-slf4j</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.ec</groupId>
-            <artifactId>user-center</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <classifier>dubbo</classifier>
-        </dependency>
-        <dependency>
             <groupId>net.sf.json-lib</groupId>
             <artifactId>json-lib</artifactId>
             <version>2.4</version>
             <classifier>jdk15</classifier>
         </dependency>
-        <!--spring cloud consul-->
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.cloud</groupId>-->
-            <!--<artifactId>spring-cloud-starter-consul-discovery</artifactId>-->
-        <!--</dependency>-->
-
 
         <!-- 其他-->
         <dependency>
@@ -205,19 +139,13 @@
             <optional>true</optional>
         </dependency>
 
-
+        <dependency>
+            <groupId>com.liuym</groupId>
+            <artifactId>conduct-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
     <build>
         <plugins>
