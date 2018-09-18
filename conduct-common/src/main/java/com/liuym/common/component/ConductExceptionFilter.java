@@ -13,13 +13,9 @@ import com.liuym.common.exception.ServiceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * @Auther: WangRui
- * @Date: 2018/9/12 15:09
- * @Description:
- */
-public class CorpExceptionFilter implements Filter {
-    public static final Logger logger = LoggerFactory.getLogger(CorpExceptionFilter.class);
+public class ConductExceptionFilter implements Filter {
+
+    public static final Logger logger = LoggerFactory.getLogger(ConductExceptionFilter.class);
     @Override
     public Result invoke(Invoker<?> invoker, Invocation invocation) throws RpcException {
         try {

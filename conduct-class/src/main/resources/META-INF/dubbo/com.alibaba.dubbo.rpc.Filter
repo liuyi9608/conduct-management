@@ -1,1 +1,1 @@
-corpExceptionFilter=com.ec.corpcommon.component.CorpExceptionFilter
+conductExceptionFilter=com.liuym.common.component.ConductExceptionFilter

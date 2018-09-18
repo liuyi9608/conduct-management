@@ -8,11 +8,11 @@
 
 
     <!-- 提供方应用信息，用于计算依赖关系 -->
-    <dubbo:application name="${dubbo.application.name}"/>
+  <dubbo:application name="conduct-class"/>
     <!-- 使用zookeeper注册中心暴露服务地址 -->
-    <dubbo:registry protocol="zookeeper" address="${zookeeper.address}"/>
+  <dubbo:registry protocol="zookeeper" address="zookeeper://192.168.1.77:2181"/>
     <!-- 用dubbo协议在20880端口暴露服务 -->
-    <dubbo:protocol name="${dubbo.protocol.name}" port="${dubbo.protocol.port}" accepts="1000"/>
+  <dubbo:protocol name="dubbo" port="2019" accepts="1000"/>
 
     <!-- 声明需要暴露的服务接口 -->
   <dubbo:service interface="com.liuym.common.dubbo.classes.api.ConductClassesDubboService"
@@ -27,5 +27,5 @@
  <dubbo:reference id="userApiService" interface="com.ec.usercenter.service.UserApiService" check="false" loadbalance="roundrobin" version="0.0.1"/>
  <dubbo:reference id="userCenterApi" interface="com.ec.usercenter.api.UserCenterApi$Iface" check="false" loadbalance="roundrobin" version="0.0.1"/>-->
 
-    <dubbo:provider filter="corpExceptionFilter"></dubbo:provider>
+  <dubbo:provider filter="conductExceptionFilter"></dubbo:provider>
 </beans>
