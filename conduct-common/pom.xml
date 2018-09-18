@@ -12,9 +12,16 @@
     <artifactId>conduct-common</artifactId>
 
     <dependencies>
+
         <dependency>
-            <groupId>com.ctrip.framework.apollo</groupId>
-            <artifactId>apollo-client</artifactId>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>1.1.10</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.35</version>
         </dependency>
         <dependency>
             <groupId>com.vip.vjtools</groupId>
@@ -24,18 +31,6 @@
         <dependency>
             <groupId>net.sf.dozer</groupId>
             <artifactId>dozer</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <!--反序列化 php-->
-        <dependency>
-            <groupId>org.sction</groupId>
-            <artifactId>phprpc</artifactId>
-            <version>3.0.2</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.ec</groupId>
-            <artifactId>springbt-common-thrift</artifactId>
             <optional>true</optional>
         </dependency>
 		<dependency>

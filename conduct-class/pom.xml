@@ -114,12 +114,7 @@
             <artifactId>netty</artifactId>
             <optional>true</optional>
         </dependency>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <optional>true</optional>
-            <scope>runtime</scope>
-        </dependency>
+
         <dependency>
             <groupId>com.vip.vjtools</groupId>
             <artifactId>vjkit</artifactId>

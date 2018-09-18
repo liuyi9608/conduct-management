@@ -98,12 +98,7 @@
             <artifactId>log4j-over-slf4j</artifactId>
             <optional>true</optional>
         </dependency>
-        <dependency>
-            <groupId>com.ec</groupId>
-            <artifactId>user-center</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <classifier>dubbo</classifier>
-        </dependency>
+
         <dependency>
             <groupId>net.sf.json-lib</groupId>
             <artifactId>json-lib</artifactId>
@@ -120,12 +115,6 @@
             <groupId>io.netty</groupId>
             <artifactId>netty</artifactId>
             <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <optional>true</optional>
-            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>com.vip.vjtools</groupId>

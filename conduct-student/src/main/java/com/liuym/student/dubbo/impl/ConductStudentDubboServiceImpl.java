@@ -1,4 +1,4 @@
-package com.liuym.student.service.impl;
+package com.liuym.student.dubbo.impl;
 
 import com.liuym.common.dubbo.student.api.ConductStudentDubboService;
 import org.springframework.stereotype.Service;

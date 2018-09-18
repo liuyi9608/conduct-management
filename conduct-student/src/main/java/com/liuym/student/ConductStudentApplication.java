@@ -1,5 +1,6 @@
 package com.liuym.student;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -10,6 +11,7 @@ import org.springframework.context.annotation.ImportResource;
 
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class, DataSourceTransactionManagerAutoConfiguration.class})
 @ImportResource(locations = {"classpath:applicationContext.xml"})
+@MapperScan("com.liuym.student.repository.mapper.base")
 public class ConductStudentApplication {
     private static Logger logger = LoggerFactory.getLogger(ConductStudentApplication.class);
 
