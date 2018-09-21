@@ -4,13 +4,6 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- *
- * @ClassName: ExitLogger
- * @Description: TODO
- * @author ecuser
- * @date 2016年11月7日 上午10:19:53
- */
 
 public class ExitLogger {
 

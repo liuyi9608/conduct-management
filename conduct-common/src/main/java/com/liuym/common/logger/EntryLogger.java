@@ -5,15 +5,6 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
-/**
- *
- * @ClassName: EntryLogger
- * @Description: TODO
- * @author ecuser
- * @date 2016年11月7日 上午10:19:38
- */
-
 public class EntryLogger {
 
     private static final Logger log = LoggerFactory.getLogger(EntryLogger.class);

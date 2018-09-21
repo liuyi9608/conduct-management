@@ -5,13 +5,6 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- *
- * @ClassName: PerformanceLogger
- * @Description: TODO
- * @author ecuser
- * @date 2016年11月7日 上午10:20:45
- */
 
 public class PerformanceLogger {
 

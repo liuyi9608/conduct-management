@@ -2,13 +2,6 @@ package com.liuym.common.logger;
 
 import java.util.UUID;
 
-/**
- *
- * @ClassName: LoggerHelper
- * @Description: TODO
- * @author ecuser
- * @date 2016年11月7日 上午10:22:32
- */
 
 public class LoggerHelper {
 

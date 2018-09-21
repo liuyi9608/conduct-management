@@ -1,11 +1,5 @@
 package com.liuym.common.constants;
 
-/**
- * @author Administrator
- * @ClassName: Response
- * @Description: TODO
- * @date 2015年8月4日 下午4:39:54
- */
 public class Response<DATA> {
 
     private int code;

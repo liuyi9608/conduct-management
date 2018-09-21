@@ -6,11 +6,6 @@ import java.text.SimpleDateFormat;
 
 /**
  * 企业服务模块全局业务常量定义
- *
- * @Package:
- * @datetime: 2018/8/7 14:04
- * @author: lk
- * @copyright: ec
  */
 public class Constants {
 
