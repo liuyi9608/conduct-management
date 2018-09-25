@@ -11,7 +11,7 @@ spring:
     cache: false
     encoding: UTF-8
     mode: HTML5
-    prefix: classpath:/templates/
+    prefix: classpath:/templates
     suffix: .html
   datasource:
     name: test
@@ -34,11 +34,6 @@ spring:
     testOnReturn: false
     poolPreparedStatements: true
     maxOpenPreparedStatements: 20
-    mvc:
-      view:
-      prefix: /WEB-INF/
-      # 响应页面默认后缀
-      suffix: jsp
 mybatis:
   mapper-locations: classpath:mybatis/*.xml  #注意：一定要对应mapper映射xml文件的所在路径
   type-aliases-package: com.liuym.student.repository.model  # 注意：对应实体类的路径
