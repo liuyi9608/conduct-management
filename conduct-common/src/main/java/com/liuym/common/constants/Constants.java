@@ -5,7 +5,7 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 
 /**
- * 企业服务模块全局业务常量定义
+ * 操行管理全局常量定义
  */
 public class Constants {
 
@@ -66,9 +66,6 @@ public class Constants {
      * 分页参数 默认每一页的数量
      */
     public static final String PAGE_LIMIT = "5";
-    /**
-     * 企业创始人
-     */
-    public static final String ROLE_CORP_FOUNDER = "9";
+
 
 }

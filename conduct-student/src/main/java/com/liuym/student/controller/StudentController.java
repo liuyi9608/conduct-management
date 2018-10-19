@@ -30,7 +30,7 @@ public class StudentController {
 
     @RequestMapping(value = "/greeting")
     public ModelAndView test() {
-        ModelAndView modelAndView = new ModelAndView("/greeting");
+        ModelAndView modelAndView = new ModelAndView("/index");
         modelAndView.addObject("title", "欢迎使用Thymeleaf!");
         return modelAndView;
     }

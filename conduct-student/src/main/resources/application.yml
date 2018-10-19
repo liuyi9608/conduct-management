@@ -1,5 +1,5 @@
 server:
-  port=1054
+  port: 1052
 spring:
   resources:
     chain:
@@ -44,6 +44,5 @@ pagehelper:
   reasonable: true
   supportMethodsArguments: true
   params: count=countSql
-
 
 

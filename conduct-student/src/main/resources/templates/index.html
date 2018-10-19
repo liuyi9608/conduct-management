@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="<%=basePath%>">
+
+    <title>软件学院操行管理系统</title>
+    <!-- The styles -->
+    <link href="/css/bootstrap-cerulean.css" rel="stylesheet">
+    <link href="/css/login.css" rel="stylesheet">
+    <link href="/css/charisma-app.css" rel="stylesheet">
+    <style type="text/css">
+        body {
+            padding-bottom: 40px;
+        }
+
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+    </style>
+    <script src="/js/jquery-1.7.2.min.js"></script>
+    <script src="/js/bootstrap-dropdown.js"></script>
+</head>
+
+<body style="width:auto">
+
+<div class="navbar">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <a class="btn btn-navbar" data-toggle="collapse"
+               data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="student.action"> <img src="/images/logo20.png"/> <span>软件学院操行管理系统</span></a>
+
+            <div class="btn-group pull-right">
+                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="icon-user"></i>
+                    <span class="hidden-phone">${sessionScope.student.name}</span>
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="changePassword.jsp">修改密码</a></li>
+                    <li class="divider"></li>
+                    <li><a href="studentlogout.action">安全退出</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div id="content" class="span10" style="width: 78.5%; margin-left: 11%;padding-top:20px;">
+            <div class="row-fluid sortable">
+                <div class="box span9">
+                    <div class="box-header well" data-original-title>
+                        <h2>我的操行分</h2>
+                    </div>
+                    <div class="box-content">
+                        <div class="page-header">
+                            <h1 style="font-size:50px;padding-left:100px;">欢迎你：</h1>
+                        </div>
+                        <div class="row-fluid" style="padding-top: 30px; text-align: center; ">
+                            <h1 style="font-size:70px; letter-spacing: 50px;">${sessionScope.student.name}</h1>
+                        </div>
+
+                        <div class="row-fluid">
+                            <br><br><br><br><br><br>
+
+                            <div class="center">
+
+                            </div>
+                        </div>
+
+                        <br>
+
+                        <div class="divider-content">
+                            <span></span>
+                        </div>
+
+                        <br>
+                        <br>
+                        <br>
+
+                        <!-- start dispaly studentscore detail -->
+                        <div class="row-fluid">
+                            <h1 style="font-size:30px;padding-left:100px;">操行详情：</h1>
+                            <br>
+                            <br>
+                            <table class="table table-striped table-bordered bootstrap-datatable">
+                                <thead>
+                                <tr>
+                                    <th class="sorting" style="width: 10%; text-align:center;">分值</th>
+                                    <th class="sorting" style="width: 60%;">原因</th>
+                                    <th class="sorting" style="width: 15%;">部门</th>
+                                    <th class="sorting" style="width: 15%;">页码</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- dispaly studentscore detail end-->
+                        <br>
+                        <br>
+                        <br>
+
+                        <!-- start dispaly classscore detail -->
+                        <div class="row-fluid">
+                            <h1 style="font-size:30px;padding-left:100px;">量化详情：</h1>
+                            <br>
+                            <br>
+                            <table class="table table-striped table-bordered bootstrap-datatable">
+                                <thead>
+                                <tr>
+                                    <th class="sorting" style="width: 10%; text-align:center;">分值</th>
+                                    <th class="sorting" style="width: 60%;">原因</th>
+                                    <th class="sorting" style="width: 15%;">日期</th>
+                                    <th class="sorting" style="width: 15%;">页码</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- dispaly classscore detail end-->
+                    </div>
+                </div>
+
+                <!-- student info -->
+                <div class="box span3">
+                    <div class="box-header well">
+                        <h3>班级信息</h3>
+                    </div>
+                    <br>
+                    <div class="box-content">
+                        <h3>班级代号：${theclass.classnumber }</h3>
+                        <br>
+                        <h3>班级名称：${theclass.classname }</h3>
+                        <br>
+                        <h3>专业名称：${theclass.majorname }</h3>
+                        <br>
+                        <h3>班长姓名：${theclass.monitor }</h3>
+                        <br>
+                        <h3>班级量化：${theclass.score }</h3>
+                    </div>
+                    <br>
+                </div>
+                <!-- student info end -->
+
+                <!-- top student score -->
+                <!--<div class="box span3">
+                    <div class="box-header well">
+                        <h3>操行排行榜</h3>
+                    </div>
+                    <div class="box-content">
+                        <table class="table table-striped table-bordered bootstrap-datatable">
+                          <thead>
+                              <tr>
+                                  <th class="sorting" style="width: 50%;">姓名</th>
+                                  <th class="sorting" style="width: 50%;">操行分</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <c:forEach items="${topstudentscores }" var="student" varStatus="status">
+                                  <c:if test="${status.index == 0 }">
+                                      <tr>
+                                        <td class="center"><h3 style="color:#F1FA28">${student.name }</h3></td>
+                                        <td class="center"><h3 style="color:#F1FA28">${student.score }</h3></td>
+                                    </tr>
+                                  </c:if>
+                                  <c:if test="${status.index == 1 }">
+                                      <tr>
+                                        <td class="center"><h3 style="color:#EB681E">${student.name }</h3></td>
+                                        <td class="center"><h3 style="color:#EB681E">${student.score }</h3></td>
+                                    </tr>
+                                  </c:if>
+                                  <c:if test="${status.index == 2 }">
+                                      <tr>
+                                        <td class="center"><h3 style="color:#EB681E">${student.name }</h3></td>
+                                        <td class="center"><h3 style="color:#EB681E">${student.score }</h3></td>
+                                    </tr>
+                                  </c:if>
+                                  <c:if test="${status.index == 3 }">
+                                      <tr>
+                                        <td class="center"><h3 style="color:#EB1ED2">${student.name }</h3></td>
+                                        <td class="center"><h3 style="color:#EB1ED2">${student.score }</h3></td>
+                                    </tr>
+                                  </c:if>
+                                  <c:if test="${status.index == 4 }">
+                                      <tr>
+                                        <td class="center"><h3 style="color:#EB1ED2">${student.name }</h3></td>
+                                        <td class="center"><h3 style="color:#EB1ED2">${student.score }</h3></td>
+                                    </tr>
+                                  </c:if>
+                                  <c:if test="${status.index == 5 }">
+                                      <tr>
+                                        <td class="center"><h3 style="color:#EB1ED2">${student.name }</h3></td>
+                                        <td class="center"><h3 style="color:#EB1ED2">${student.score }</h3></td>
+                                    </tr>
+                                  </c:if>
+                                  <c:if test="${status.index == 6 }">
+                                      <tr>
+                                        <td class="center"><h3 style="color:#37EB1F">${student.name }</h3></td>
+                                        <td class="center"><h3 style="color:#37EB1F">${student.score }</h3></td>
+                                    </tr>
+                                  </c:if>
+                                  <c:if test="${status.index == 7 }">
+                                      <tr>
+                                        <td class="center"><h3 style="color:#1F99EB">${student.name }</h3></td>
+                                        <td class="center"><h3 style="color:#1F99EB">${student.score }</h3></td>
+                                    </tr>
+                                  </c:if>
+                                  <c:if test="${status.index == 8 }">
+                                      <tr>
+                                        <td class="center"><h3 style="color:#AF8F8F">${student.name }</h3></td>
+                                        <td class="center"><h3 style="color:#AF8F8F">${student.score }</h3></td>
+                                    </tr>
+                                  </c:if>
+                                  <c:if test="${status.index == 9 }">
+                                      <tr>
+                                        <td class="center"><h3 style="color:#C42E2E">${student.name }</h3></td>
+                                        <td class="center"><h3 style="color:#C42E2E">${student.score }</h3></td>
+                                    </tr>
+                                  </c:if>
+                              </c:forEach>
+                          </tbody>
+                        </table>
+                    </div>
+                </div> -->
+                <!-- top student score end! -->
+
+
+                <!-- class all student score -->
+
+                <!-- class all student score end! -->
+
+            </div>
+        </div>
+    </div>
+    <hr>
+
+    <div id="footer">
+        <p style="padding-top:0px; text-align:center; display:block">
+            版本所有:<a href="javascript:void(0)">南阳理工软件学院</a>&nbsp;&nbsp;&nbsp;技术支持:<a href="javascript:void(0)">前研工作室</a>
+        </p>
+    </div>
+
+</div>
+</body>
+</html>
